@@ -115,10 +115,10 @@
   <h2>Distribuição da Herança Pires</h2>
 
   <div class="form">
-    <label for="valorCasaA">Valor total do imóvel (Rua de Bégica, 2662):</label>
+    <label for="valorCasaA">Valor total da moradia (Rua de Bégica):</label>
     <input type="number" id="valorCasaA" placeholder="Ex: 100000">
 
-    <label for="valorCasaB">Valor total do imóvel (Travessa Capitão Ribeiro 24, 4.4):</label>
+    <label for="valorCasaB">Valor total do apartamento (Travessa Capitão Ribeiro):</label>
     <input type="number" id="valorCasaB" placeholder="Ex: 100000">
 
     <button onclick="calcular()">Calcular</button>
@@ -157,12 +157,12 @@
           <h3>Joana</h3>
           <div class="line">
             <span class="percent">${percJoanaA.toFixed(2)}%</span>
-            <strong>Rua de Bégica, 2662</strong><br>
+            <strong>Moradia: Rua de Bégica</strong><br>
             <small>${valorJoanaA.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</small>
           </div>
           <div class="line">
             <span class="percent">${percJoanaB.toFixed(2)}%</span>
-            <strong>Travessa Capitão Ribeiro, 24, 4.4</strong><br>
+            <strong>Apartamento: Travessa Capitão Ribeiro</strong><br>
             <small>0,00 €</small>
           </div>
           <div class="total">Total: ${totalJoana.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</div>
@@ -172,12 +172,12 @@
           <h3>Pedro</h3>
           <div class="line">
             <span class="percent">${percPedroA.toFixed(2)}%</span>
-            <strong>Rua de Bégica, 2662</strong><br>
+            <strong>Moradia: Rua de Bégica</strong><br>
             <small>${valorPedroA.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</small>
           </div>
           <div class="line">
             <span class="percent">${percPedroB.toFixed(2)}%</span>
-            <strong>Travessa Capitão Ribeiro, 24, 4.4</strong><br>
+            <strong>Apartamento: Travessa Capitão Ribeiro</strong><br>
             <small>${valorPedroB.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</small>
           </div>
           <div class="total">Total: ${totalPedro.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</div>
