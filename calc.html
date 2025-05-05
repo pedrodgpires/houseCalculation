@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Distribuição da Herança Pires - Joana e Pedro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f2f2f2;
+      color: #333;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    label {
+      margin-top: 15px;
+      display: block;
+      font-weight: bold;
+    }
+
+    input {
+      padding: 10px;
+      width: 300px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 25px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    #resultado {
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .line {
+      margin: 8px 0;
+    }
+
+    .total {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #27ae60;
+    }
+
+    .percent {
+        font-size: 22px;
+        color: #2980b9;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+.line {
+  margin: 15px 0;
+}
+  </style>
+</head>
+<body>
+  <h2>Simulador de Troca: Joana & Joana</h2>
+
+  <label for="valorCasaA">Valor total do imóvel (Rua da Bégica, 2662):</label>
+  <input type="number" id="valorCasaA" placeholder="Ex: 100000"> €
+
+  <label for="valorCasaB">Valor total do imóvel (Travessa Capitão Ribeiro 24, 4.4):</label>
+  <input type="number" id="valorCasaB" placeholder="Ex: 100000"> €
+  <br>
+  <button onclick="calcular()">Calcular</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    function calcular() {
+      const casaA = parseFloat(document.getElementById("valorCasaA").value);
+      const casaB = parseFloat(document.getElementById("valorCasaB").value);
+      const resultadoDiv = document.getElementById("resultado");
+
+      if (isNaN(casaA) || isNaN(casaB) || casaA <= 0 || casaB <= 0) {
+        resultadoDiv.textContent = "Insira valores válidos.";
+        return;
+      }
+
+      const valorTrocaB = casaB * 0.5;
+      const percExtraB = 50;
+      const percACeder = (valorTrocaB / casaA) * 100;
+
+      const percPedroA = 50 - percACeder;
+      const percPedroB = 100;
+      const valorPedroA = casaA * (percPedroA / 100);
+      const valorPedroB = casaB;
+      const totalPedro = valorPedroA + valorPedroB;
+
+      const percJoanaA = 50 + percACeder;
+      const percJoanaB = 0;
+      const valorJoanaA = casaA * (percJoanaA / 100);
+      const valorJoanaB = 0;
+      const totalJoana = valorJoanaA;
+
+      resultadoDiv.innerHTML = `
+        <div class="card">
+            <h3>Joana</h3>
+            <div class="line">
+            <span class="percent">${percJoanaA.toFixed(2)}%</span> da <strong>Rua da Bégica 2662</strong><br>
+            <small>${valorJoanaA.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</small>
+            </div>
+            <div class="line">
+            <span class="percent">${percJoanaB.toFixed(2)}%</span> da <strong>Travessa Capitão Ribeiro 24, 4.4</strong><br>
+            <small>0,00 €</small>
+            </div>
+            <div class="total">Total: ${totalJoana.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</div>
+        </div>
+
+        <div class="card">
+            <h3>Pedro</h3>
+            <div class="line">
+            <span class="percent">${percPedroA.toFixed(2)}%</span> da <strong>Rua da Bégica 2662</strong><br>
+            <small>${valorPedroA.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</small>
+            </div>
+            <div class="line">
+            <span class="percent">${percPedroB.toFixed(2)}%</span> da <strong>Travessa Capitão Ribeiro 24, 4.4</strong><br>
+            <small>${valorPedroB.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</small>
+            </div>
+            <div class="total">Total: ${totalPedro.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</div>
+        </div>
+        `;
+    }
+  </script>
+</body>
+</html>
