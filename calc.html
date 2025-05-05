@@ -5,97 +5,124 @@
   <title>Distribuição da Herança Pires - Joana e Pedro</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 30px;
-      background: #f2f2f2;
-      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: #f7f9fc;
+      color: #2c3e50;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     h2 {
-      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .form {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
     }
 
     label {
       margin-top: 15px;
       display: block;
       font-weight: bold;
+      text-align: left;
     }
 
     input {
       padding: 10px;
-      width: 300px;
-      margin-bottom: 10px;
-      border-radius: 5px;
+      width: 100%;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 6px;
       border: 1px solid #ccc;
+      font-size: 15px;
     }
 
     button {
-      padding: 10px 25px;
-      margin-top: 20px;
+      padding: 12px 30px;
       border: none;
-      border-radius: 5px;
-      background-color: #3498db;
+      border-radius: 6px;
+      background-color: #2980b9;
       color: white;
       font-size: 16px;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     button:hover {
-      background-color: #2980b9;
+      background-color: #1c6ca8;
     }
 
     #resultado {
-      margin-top: 30px;
+      margin-top: 40px;
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      width: 100%;
     }
 
     .card {
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 300px;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      width: 280px;
+      text-align: center;
     }
 
     .card h3 {
-      margin-top: 0;
-      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 20px;
+      color: #34495e;
     }
 
     .line {
-      margin: 8px 0;
-    }
-
-    .total {
-      margin-top: 15px;
-      font-weight: bold;
-      color: #27ae60;
+      margin: 20px 0;
     }
 
     .percent {
-        font-size: 22px;
-        color: #2980b9;
-        font-weight: bold;
-        display: inline-block;
-        margin-bottom: 5px;
+      font-size: 24px;
+      color: #2980b9;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
     }
-.line {
-  margin: 15px 0;
-}
+
+    .total {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 17px;
+      color: #27ae60;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+
+    strong {
+      color: #444;
+    }
   </style>
 </head>
 <body>
-  <h2>Simulador de Troca: Joana & Joana</h2>
+  <h2>Distribuição da Herança Pires</h2>
 
-  <label for="valorCasaA">Valor total do imóvel (Rua da Bégica, 2662):</label>
-  <input type="number" id="valorCasaA" placeholder="Ex: 100000"> €
+  <div class="form">
+    <label for="valorCasaA">Valor total do imóvel (Rua de Bégica, 2662):</label>
+    <input type="number" id="valorCasaA" placeholder="Ex: 100000">
 
-  <label for="valorCasaB">Valor total do imóvel (Travessa Capitão Ribeiro 24, 4.4):</label>
-  <input type="number" id="valorCasaB" placeholder="Ex: 100000"> €
-  <br>
-  <button onclick="calcular()">Calcular</button>
+    <label for="valorCasaB">Valor total do imóvel (Travessa Capitão Ribeiro 24, 4.4):</label>
+    <input type="number" id="valorCasaB" placeholder="Ex: 100000">
+
+    <button onclick="calcular()">Calcular</button>
+  </div>
 
   <div id="resultado"></div>
 
@@ -106,12 +133,11 @@
       const resultadoDiv = document.getElementById("resultado");
 
       if (isNaN(casaA) || isNaN(casaB) || casaA <= 0 || casaB <= 0) {
-        resultadoDiv.textContent = "Insira valores válidos.";
+        resultadoDiv.innerHTML = "<p style='color:red;'>Insira valores válidos.</p>";
         return;
       }
 
       const valorTrocaB = casaB * 0.5;
-      const percExtraB = 50;
       const percACeder = (valorTrocaB / casaA) * 100;
 
       const percPedroA = 50 - percACeder;
@@ -128,31 +154,35 @@
 
       resultadoDiv.innerHTML = `
         <div class="card">
-            <h3>Joana</h3>
-            <div class="line">
-            <span class="percent">${percJoanaA.toFixed(2)}%</span> da <strong>Rua da Bégica 2662</strong><br>
+          <h3>Joana</h3>
+          <div class="line">
+            <span class="percent">${percJoanaA.toFixed(2)}%</span>
+            <strong>Rua de Bégica, 2662</strong><br>
             <small>${valorJoanaA.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</small>
-            </div>
-            <div class="line">
-            <span class="percent">${percJoanaB.toFixed(2)}%</span> da <strong>Travessa Capitão Ribeiro 24, 4.4</strong><br>
+          </div>
+          <div class="line">
+            <span class="percent">${percJoanaB.toFixed(2)}%</span>
+            <strong>Travessa Capitão Ribeiro, 24, 4.4</strong><br>
             <small>0,00 €</small>
-            </div>
-            <div class="total">Total: ${totalJoana.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</div>
+          </div>
+          <div class="total">Total: ${totalJoana.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</div>
         </div>
 
         <div class="card">
-            <h3>Pedro</h3>
-            <div class="line">
-            <span class="percent">${percPedroA.toFixed(2)}%</span> da <strong>Rua da Bégica 2662</strong><br>
+          <h3>Pedro</h3>
+          <div class="line">
+            <span class="percent">${percPedroA.toFixed(2)}%</span>
+            <strong>Rua de Bégica, 2662</strong><br>
             <small>${valorPedroA.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</small>
-            </div>
-            <div class="line">
-            <span class="percent">${percPedroB.toFixed(2)}%</span> da <strong>Travessa Capitão Ribeiro 24, 4.4</strong><br>
+          </div>
+          <div class="line">
+            <span class="percent">${percPedroB.toFixed(2)}%</span>
+            <strong>Travessa Capitão Ribeiro, 24, 4.4</strong><br>
             <small>${valorPedroB.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</small>
-            </div>
-            <div class="total">Total: ${totalPedro.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</div>
+          </div>
+          <div class="total">Total: ${totalPedro.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' })}</div>
         </div>
-        `;
+      `;
     }
   </script>
 </body>
